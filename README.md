@@ -61,9 +61,9 @@ Input Variables:
 ```
 #### Command
 ```bash
-speech-to-text-openai-chat --duration 10 --filename test.txt
+app-chatbot-openai --duration 10 --conversation test
 or
-speech-to-text-openai-chat -d 10 -f test.txt
+app-chatbot-openai -d 10 -c test
 ```
 
 
