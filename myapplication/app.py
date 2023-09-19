@@ -26,7 +26,7 @@ parser.add_argument('-c', '--conversation', dest='conversation', type=str, help=
 params = parser.parse_args()
 
 # Setting secrets for .env file
-secrets = dotenv_values("../.env")
+secrets = dotenv_values(".env")
 
 # Configure logging
 current_date = datetime.now().strftime("%Y-%m-%d")
