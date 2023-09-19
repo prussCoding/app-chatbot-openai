@@ -19,8 +19,8 @@ from speech_recognition.exceptions import UnknownValueError
 
 # Setting Parameters agrs for program to run
 parser  = argparse.ArgumentParser( prog='Speech-to-Text and OpenAI Chat Interface',description='Process speech to text to be send to OpenAI chat for a response')
-parser.add_argument('-d', '--duration', dest='duration', type=int, help='set the lenght of time to listen to user voice input', required=True)
-parser.add_argument('-c', '--conversation', dest='conversation', type=str, help='set the conversation.', required=True)
+parser.add_argument('-d', '--duration', dest='duration', type=int, help='Set the lenght of time to listen to user voice input (seconds).', required=True)
+parser.add_argument('-c', '--conversation', dest='conversation', type=str, help='Set the conversation name for tracking.', required=True)
 
 # Setting Params from Parser Arguments
 params = parser.parse_args()
