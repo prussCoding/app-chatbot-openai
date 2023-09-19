@@ -37,7 +37,7 @@ setuptools.setup(
     ],
     entry_points={
         'console_scripts': [
-            'myapplication = myapplication.app:main',
+            'app-chatbot-openai = myapplication.app:main',
         ],
     },
     python_requires=">=3.6",
