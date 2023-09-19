@@ -49,7 +49,7 @@ engine.setProperty('volume',secrets['PYTTSX_VOLUME'])
 # Basic Configuration for Logging
 logging.basicConfig(
     format='%(asctime)s [%(levelname)s] -> %(message)s',
-    level=logging.INFO,
+    level=logging.WARNING,
     force=True,
     handlers=[
         logging.FileHandler(f'logs/{mymodule}-{str(current_date)}.log'),
@@ -177,7 +177,6 @@ def speech_to_text(type, content, duration, mic) -> str:
     
     with sr.Microphone(device_index=mic) as source:
         audio_data = init_rec.record(source, duration=duration)
-        logging.info("Recognizing your text.............")
         try: 
             global text 
             text = init_rec.recognize_google(audio_data)
@@ -194,6 +193,7 @@ def speech_to_text(type, content, duration, mic) -> str:
             logging.info(f'Conversation Dictionary:  {conversation}')
         except UnknownValueError as e:
             logging.warning(e)
+        print(f'Recognizing your speech for {type} as: {text}')
     
     logging.debug(f'Module: myspeechtotext -> Method: speechtotext() -> Value: {text}')
 
@@ -314,10 +314,7 @@ def main():
                 content=content  
             ))
             logging.info(f'Conversation Dictionary:  {conversation}')
-            
-            #with open(filename, 'a') as f:
-            #    f.write(f'Response (chat):\n[{datetime.now().strftime("%Y-%m-%d %H-%M-%S")}] {content}\n')
-            
+
             existing_data = []
             if os.path.isfile(filename_json):
                 with open(filename_json, "r") as json_file:
@@ -328,7 +325,8 @@ def main():
             
             with open(filename_json, 'w', encoding='utf-8') as json_file:
                 json.dump(existing_data, json_file, indent=4)                    
-                
+            
+            print(f'Chat Response: {content}')
             text_to_speech(content)
     
     engine.stop()
